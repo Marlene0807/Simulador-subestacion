@@ -1,0 +1,9 @@
+  /* Estilo para los botones con imagen */
+  button img {
+      width: 100px;
+      /* Ajusta el tamaño de la imagen */
+      margin-right: 10px;
+      /* Espacio entre la imagen y el texto */
+      vertical-align: middle;
+      /* Alinea la imagen verticalmente */
+  }

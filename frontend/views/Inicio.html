@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Subestación Eléctrica</title>
+    <!-- Ruta correcta al archivo CSS -->
+    <link rel="stylesheet" href="/frontend/CSS/estiloInicio.css">
+</head>
+<body>
+    <div class="form-container">
+        <!-- Formulario de Inicio de Sesión -->
+        <section id="login-section">
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <label for="correo-login">Correo:</label>
+                <input type="email" id="correo-login" name="correo-login" required>
+
+                <label for="contraseña-login">Contraseña:</label>
+                <input type="password" id="contraseña-login" name="contraseña-login" required>
+
+                <button type="submit">Iniciar sesión</button>
+            </form>
+
+            <div class="register-link">
+                <p>¿No tienes una cuenta? <a href="#" onclick="mostrarRegistro()">Regístrate aquí</a></p>
+            </div>
+        </section>
+
+        <!-- Formulario de Registro -->
+        <section id="registro-section" style="display: none;">
+            <h2>Registro</h2>
+            <form id="registro-form">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" name="correo" required>
+
+                <label for="contraseña">Contraseña:</label>
+                <input type="password" id="contraseña" name="contraseña" required>
+
+                <button type="submit">Registrarse</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Importar los scripts JavaScript -->
+    <script src="/frontend/JavaScript/formulario.js"></script>
+    <script src="/frontend/JavaScript/login.js"></script>
+    <script src="/frontend/JavaScript/registro.js"></script>
+
+</body>
+</html>

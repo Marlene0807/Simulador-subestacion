@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Interactivo</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="200" height="150" style="border:1px solid #000;"></canvas>
+    <button onclick="togglePause()">Iniciar/Pausar</button>
+
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let isPaused = true; // Estado de pausa o reproducción
+        let isHorizontal = false; // Estado de la línea (inclinada o horizontal)
+        let color = "black"; // Color inicial de los círculos y la línea
+
+        const startX = 50, startY = 50; // Punto de inicio de la línea (primer círculo)
+        const endX = 90, endY = 50;     // Punto final horizontal (segundo círculo)
+
+        // Función para dibujar la figura
+        function drawFigure() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar canvas
+
+            // Definir color según el estado de pausa y posición de la línea
+            if (isPaused) {
+                color = "black"; // En pausa, color negro
+            } else {
+                color = isHorizontal ? "green" : "red"; // En reproducción, verde si horizontal, rojo si inclinado
+            }
+
+            // Línea horizontal inicial
+            ctx.beginPath();
+            ctx.moveTo(10, 50);
+            ctx.lineTo(50, 50);
+            ctx.stroke();
+
+            // Primer círculo con color dinámico
+            ctx.beginPath();
+            ctx.arc(50, 50, 5, 0, 2 * Math.PI);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.stroke();
+
+            // Línea en ángulo o en horizontal según el estado
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            if (isHorizontal) {
+                ctx.lineTo(endX, endY); // Línea horizontal entre los dos círculos
+            } else {
+                ctx.lineTo(90, 30); // Línea en ángulo desde el mismo punto inicial
+            }
+            ctx.stroke();
+
+            // Segundo círculo con color dinámico
+            ctx.beginPath();
+            ctx.arc(90, 50, 5, 0, 2 * Math.PI);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.stroke();
+
+            // Línea horizontal
+            ctx.beginPath();
+            ctx.moveTo(95, 50);
+            ctx.lineTo(140, 50);
+            ctx.stroke();
+
+            // Símbolo de puesta a tierra
+            ctx.beginPath();
+            ctx.moveTo(140, 35);
+            ctx.lineTo(140, 65);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(150, 40);
+            ctx.lineTo(150, 60);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(160, 45);
+            ctx.lineTo(160, 55);
+            ctx.stroke();
+        }
+
+        // Función para alternar el estado de pausa
+        function togglePause() {
+            isPaused = !isPaused; // Cambia el estado de pausa
+            drawFigure(); // Redibujar la figura con el color según el estado de pausa
+        }
+
+        // Función para detectar clic y alternar entre estado inclinado y horizontal
+        canvas.addEventListener("click", function (event) {
+            if (!isPaused) { // Solo permite el ajuste de la línea si no está en pausa
+                const rect = canvas.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+
+                // Detecta si el clic está cerca de la línea inclinada (posición aproximada)
+                if (x >= startX - 10 && x <= endX + 10 && y >= startY - 10 && y <= endY + 10) {
+                    isHorizontal = !isHorizontal; // Alterna entre inclinado y horizontal
+                    drawFigure();
+                }
+            }
+        });
+
+        // Dibujar la figura inicial
+        drawFigure();
+    </script>
+</body>
+
+</html>
