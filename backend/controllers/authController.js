@@ -1,27 +1,30 @@
-const Usuario = require('../models/usuario');
+// authController.js
+
+// Aqui manejamos el login y registro de usuarios con MongoDB y bcrypt(contraseñas hasheo), JWT(JSON Web Token, autenticacion)
+const Usuario = require('./backend/models/usuario');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 exports.login = async (req, res) => {
-    const { correo, contraseña } = req.body;
-
     try {
-        const usuario = await Usuario.findOne({ correo });
-        if (!usuario) {
-            return res.status(400).json({ error: 'Correo o contraseña incorrectos' });
+        const { nombre, correo, contraseña } = req.body;
+
+        if (!nombre || !correo || !contraseña) {
+            return res.status(400).json({ error: 'Todos los campos son obligatorios' });
         }
 
-        const esValida = await bcrypt.compare(contraseña, usuario.contraseña);
-        if (!esValida) {
-            return res.status(400).json({ error: 'Correo o contraseña incorrectos' });
+        const usuarioExistente = await Usuario.findOne({ correo });
+        if (usuarioExistente) {
+            return res.status(400).json({ error: 'El correo ya está registrado' });
         }
 
-        const token = jwt.sign({ id: usuario._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.status(200).json({ message: 'Inicio de sesión exitoso', token });
+        const nuevoUsuario = new Usuario({ nombre, correo, contraseña });
+        await nuevoUsuario.save();
 
+        res.status(201).json({ mensaje: 'Usuario registrado exitosamente' });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Hubo un error al iniciar sesión' });
+        console.error('Error en el registro:', error);
+        res.status(500).json({ error: 'Error al registrar el usuario' });
     }
 };
 

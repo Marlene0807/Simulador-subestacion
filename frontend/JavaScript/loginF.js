@@ -1,11 +1,11 @@
-// login.js (frontend)
+// loginF.js (frontend)
+
 async function manejarLogin(event) {
     event.preventDefault();
 
     const correo = document.getElementById("correo-login").value;
     const contraseña = document.getElementById("contraseña-login").value;
 
-    // Validar campos vacíos
     if (!correo || !contraseña) {
         alert("Por favor, complete todos los campos");
         return;
@@ -14,7 +14,7 @@ async function manejarLogin(event) {
     const datos = { correo, contraseña };
 
     try {
-        const response = await fetch('http://localhost:3000/api/login', {
+        const response = await fetch('http://localhost:3000/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,17 +26,17 @@ async function manejarLogin(event) {
 
         if (response.ok) {
             alert('Inicio de sesión exitoso');
-            console.log('Token:', data.token);
-            // Aquí puedes redirigir a una página protegida o almacenar el token
-            localStorage.setItem('token', data.token);  // Guarda el token en localStorage o en cookies
+            localStorage.setItem('token', data.token);
+
+            // Redireccionar a tu vista principal después del login
+            window.location.href = "/frontend/views/bienvenida.html";
         } else {
-            alert(data.error || 'Hubo un error al iniciar sesión');
+            alert(data.error || "Hubo un error al iniciar sesión");
         }
     } catch (error) {
-        console.error('Error de conexión:', error);
-        alert('Hubo un error al conectar con el servidor');
+        console.error("Error al conectar con el servidor:", error);
+        alert("Error de conexión, intente más tarde");
     }
 }
 
-// Asocia la función al formulario de login
 document.getElementById("login-form").addEventListener("submit", manejarLogin);

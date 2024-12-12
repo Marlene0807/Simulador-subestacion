@@ -1,21 +1,35 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+// server.js
+
+// Configuración Express
 const cors = require('cors');
-const bodyParser = require('body-parser');
-const path = require('path'); // Asegúrate de incluir esto
+const express = require('express');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const authRoutes = require('./routes/login');
+const registerRoutes = require('./routes/registro');
 
 dotenv.config();
 
+const mongoURI = process.env.MONGO_URI;
+
+// Conectar MongoDB
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Conexión exitosa a MongoDB'))
+  .catch((err) => console.error('Error de conexión a MongoDB:', err));
+
 const app = express();
 const port = process.env.PORT || 3000;
+const MONGO_URI = process.env.MONGO_URI;
 
-// Servir archivos estáticos
-app.use(express.static(path.join(__dirname, 'frontend'))); // Esto sirve todo desde la carpeta frontend
+// Middleware para procesar datos JSON y form
+app.use(express.json());
+app.use(cors());
 
-// Configuración de CORS, body-parser y las rutas
+app.use('/auth', authRoutes);
+app.use('/api', registerRoutes);
 
-// Iniciar el servidor
-app.listen(port, () => {
-    console.log(`Servidor escuchando en el puerto ${port}`);
+// Iniciar servidor
+app.use(express.json());
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Servidor en puerto ${process.env.PORT || 3000}`);
 });
