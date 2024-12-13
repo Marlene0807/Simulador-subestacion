@@ -34,8 +34,10 @@ router.post('/login', async (req, res) => {
             expiresIn: '1h',
         });
 
+        //Enviar el token en la respuesta
         res.status(200).json({ token });
     } catch (error) {
+        console.error('Error al iniciar sesion:', error);
         res.status(500).json({ error: 'Hubo un error al iniciar sesión' });
     }
 });

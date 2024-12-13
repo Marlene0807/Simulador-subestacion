@@ -14,7 +14,7 @@ async function manejarLogin(event) {
     const datos = { correo, contraseña };
 
     try {
-        const response = await fetch('http://localhost:3000/api/auth/login', {
+        const response = await fetch('http://localhost:3000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ async function manejarLogin(event) {
             alert('Inicio de sesión exitoso');
             localStorage.setItem('token', data.token);
 
-            // Redireccionar a tu vista principal después del login
+            // Redireccionar a la vista principal después del login
             window.location.href = "/frontend/views/bienvenida.html";
         } else {
             alert(data.error || "Hubo un error al iniciar sesión");

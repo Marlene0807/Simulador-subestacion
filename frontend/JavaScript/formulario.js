@@ -90,7 +90,7 @@ async function manejarRegistro(e) {
 
     const datos = { nombre, correo, contraseña };
 
-    const data = await realizarSolicitud("http://localhost:3000/auth/register", datos);
+    const data = await realizarSolicitud("http://localhost:3000/api/register", datos);
 
     if (data) {
         mostrarAlerta("¡Registro exitoso! Ahora puedes iniciar sesión.");
@@ -113,7 +113,7 @@ async function manejarLogin(e) {
     const datos = { correo, contraseña };
 
     try {
-        const response = await fetch('http://localhost:3000/auth/login', {
+        const response = await fetch('http://localhost:3000/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(datos),
@@ -124,7 +124,7 @@ async function manejarLogin(e) {
         if (response.ok && data.token) {
             mostrarAlerta("¡Inicio exitoso!");
             localStorage.setItem("token", data.token);
-            window.location.href = "/frontend/views/dashboard.html";
+            window.location.href = "/frontend/views/Bienvenida.html";
         } else {
             mostrarAlerta(data?.message || "Error al iniciar sesión.");
         }
