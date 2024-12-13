@@ -23,7 +23,11 @@ const MONGO_URI = process.env.MONGO_URI;
 
 // Middleware para procesar datos JSON y form
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'http://127.0.0.1:5502', // URL desde donde ejecutas el frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use('/auth', authRoutes);
 app.use('/api', registerRoutes);
