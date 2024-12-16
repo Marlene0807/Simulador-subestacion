@@ -2,8 +2,8 @@
 
 // Aqui manejamos el login y registro de usuarios con MongoDB y bcrypt(contraseñas hasheo), JWT(JSON Web Token, autenticacion)
 const Usuario = require('../models/usuario');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs'); // Contraseñas
+const jwt = require('jsonwebtoken'); // Generar Token
 
 // authController.js - Login
 exports.login = async (req, res) => {
@@ -68,6 +68,6 @@ exports.registro = async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Hubo un error al registrar el usuario' });
+        res.status(500).json({ error: 'Hubo un error al registrar el usuario', details: error.message });
     }
 };
