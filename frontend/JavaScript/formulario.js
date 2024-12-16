@@ -1,4 +1,6 @@
 // Función para mostrar el formulario de login y ocultar el de registro
+const API_URL = process.env.NODE_ENV === 'development' ? "http://localhost:3000/api" : "simuladorsubestacionelectricatt.azurewebsites.net"; //URL de azure
+
 function mostrarLogin() {
     document.getElementById("registro-section").style.display = "none";
     document.getElementById("login-section").style.display = "block";
