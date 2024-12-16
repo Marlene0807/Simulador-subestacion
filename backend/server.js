@@ -24,10 +24,10 @@ mongoose.connect(mongoURI, {
   serverSelectionTimeoutMS: 30000,  // Aumentar el tiempo de espera (30 segundos)
 })
 .then(() => {
-  console.log("Conexión exitosa a la base de datos");
+  console.log("Conexión exitosa a la base de datos CosmosDB");
 })
 .catch((error) => {
-  console.error("Error de conexión a la base de datos:", error);
+  console.error("Error de conexión a la base de datos con CosmosDB:", error);
 });
 
 const app = express();
@@ -35,10 +35,11 @@ const port = process.env.PORT || 3000;
 
 //Habilitar CORS para el frontend en el puerto 5502
 app.use(cors({
-  origin: 'http://127.0.0.1:5502', // URL del frontend (localmente)
+  origin: ['http://127.0.0.1:5502', 'https://simuladorsubestacionelectricatt.azurewebsites.net/'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 // Middleware para procesar datos JSON y form
 app.use(express.json());
