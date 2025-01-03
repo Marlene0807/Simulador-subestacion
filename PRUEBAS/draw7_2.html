@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medios Círculos sin Líneas de División</title>
+</head>
+
+<body>
+    <canvas id="miCanvas" width="400" height="200" style="border:1px solid black;"></canvas>
+
+    <script>
+        const canvas = document.getElementById('miCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Método 1: Función para dibujar medios círculos sin línea divisoria
+        function dibujarMedioCirculo(x, y, radio, direccion) {
+            ctx.beginPath();
+            ctx.arc(x, y, radio, 0, Math.PI * direccion, false);
+            ctx.stroke();
+        }
+
+        // Método 2: Función para dibujar medios círculos usando moveTo() y lineTo()
+        function dibujarMedioCirculoAlternativo(x, y, radio, direccion) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);  // Solo se dibuja desde el centro para no tener líneas de división
+            ctx.arc(x, y, radio, Math.PI * direccion, Math.PI * (direccion + 1), false);
+            ctx.stroke();
+        }
+
+        // Función para dibujar la línea vertical entre los dos círculos centrales
+        function dibujarLineaVertical(x, yInicio, yFin) {
+            ctx.beginPath();
+            ctx.moveTo(x, yInicio);
+            ctx.lineTo(x, yFin);
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+        }
+
+        // Función para dibujar una flecha mirando hacia abajo
+        function dibujarFlechaHaciaAbajo(x, y, tamaño) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x, y + tamaño);
+            ctx.lineTo(x - tamaño / 3, y + tamaño - 8);
+            ctx.moveTo(x, y + tamaño);
+            ctx.lineTo(x + tamaño / 3, y + tamaño - 8);
+            ctx.strokeStyle = 'green';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+        }
+
+        // Parámetros comunes
+        const radio = 15;
+        const separacion = radio * 2;
+        const distanciaVertical = 50;
+
+        // Función para dibujar los medios círculos de la parte superior con el Método 1
+        function dibujarArriba() {
+            const yArriba = 50;
+            for (let i = 0; i < 4; i++) {
+                const x = separacion * i + radio;
+                dibujarMedioCirculo(x, yArriba, radio, 1);
+            }
+            // Línea vertical entre los círculos centrales de arriba
+            const xLinea = separacion * 2;
+            dibujarLineaVertical(xLinea, yArriba - radio - 10, yArriba + radio);
+        }
+
+        // Función para dibujar los medios círculos de la parte inferior con el Método 2
+        function dibujarAbajo() {
+            const yAbajo = 50 + distanciaVertical;
+            for (let i = 0; i < 4; i++) {
+                const x = separacion * i + radio;
+                dibujarMedioCirculoAlternativo(x, yAbajo, radio, -1);
+            }
+            // Línea vertical entre los círculos centrales de abajo
+            const xLinea = separacion * 2;
+            dibujarLineaVertical(xLinea, yAbajo - radio, yAbajo + radio + 10);
+            // Dibujar flecha hacia abajo al lado de los círculos de abajo
+            dibujarFlechaHaciaAbajo(separacion * 4 + 20, yAbajo - 5, 20);
+        }
+
+        // Llamar a las funciones para dibujar los medios círculos
+        dibujarArriba();
+        dibujarAbajo();
+    </script>
+</body>
+
+</html>

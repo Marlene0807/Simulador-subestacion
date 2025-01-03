@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Subestación Eléctrica</title>
+  <link rel="stylesheet" href="CSS/estilosBienvenida.css">
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Simulador de Subestación Eléctrica</h1>
+      <nav>
+        <ul>
+          <li><a href="Manual.html">Manual</a></li>
+          <li><a href="Plantillas.html">Simulador</a></li>
+          <li><a href="Contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <!-- Contenedor de texto con imágenes al lado -->
+    <div class="text-and-images-container">
+      <div class="text-content">
+        <h2>¡Bienvenido!</h2>
+        <p>El presente trabajo terminal pretende apoyar en la comprensión y manejo de una subestación eléctrica, por medio
+          del estudio de simulaciones de subestaciones eléctricas a partir de diagramas unifilares, considerando las
+          distintas configuraciones de conexión de las subestaciones.</p>
+        <h2>Nuestro Objetivo...</h2>
+        <p>Desarrollar un simulador para el apoyo a estudiantes de ESIME Zacatenco en sus prácticas de diagramas
+          unifilares de subestaciones eléctricas de alta y baja tensión, con el uso libre de edición para futuras
+          prácticas,
+          promoviendo una mayor accesibilidad y comprensión.</p>
+      </div>
+  
+    </div>
+  <!-- Carrusel de imágenes -->
+  <div class="carousel-container">
+    <div class="carousel">
+      <img src="Imagenes/esime.jpg" class="carousel-slide" alt="ESIME">
+      <img src="Imagenes/esime.jpeg" class="carousel-slide" alt="ESIME 2">
+      <img src="Imagenes/ipn logo.png" class="carousel-slide" alt="IPN">
+      <img src="Imagenes/explanadaESCOM.jpg" class="carousel-slide" alt="Explanada ESCOM">
+      <img src="Imagenes/subestaciones_electricas.jpg" class="carousel-slide" alt="Subestación Eléctrica">
+    </div>
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
+
+
+  <div class="three-column-container">
+    <div class="column">
+      <h3>Subestacion Electrica</h3>
+      <p>Las subestaciones eléctricas son las instalaciones encargadas de realizar transformaciones de la tensión, de la
+        frecuencia, del número de fases o la conexión de dos o más circuitos. Pueden encontrarse junto a las centrales
+        generadoras y en la periferia de las zonas de consumo, en el exterior o interior de los edificios. Actualmente
+        en las ciudades las subestaciones están en el interior de los edificios para ahorrar espacio y contaminación. En
+        cambio, las instalaciones al aire libre están a las afueras de la ciudad</p>
+        <div class="images-below-text">
+          <img src="Imagenes/subestaciones_electricas.jpg" alt="Subestación 1">
+        
+        </div>
+    </div>
+    <div class="column">
+      <h3>Diagrama Unifilar</h3>
+      <p>Es aquel que muestra las conexiones, parte de un circuito eléctrico o de un sistema de circuitos representados
+        mediante símbolos.
+        Existen distintos arreglos de barras y la selección de un arreglo en particular depende de los siguientes
+        factores: la tensión del sistema, las características del sistema en el cual se va a integrar la Subestación
+        Eléctrica, la flexibilidad, la confiabilidad de operación y el tipo de carga a alimentar.
+      </p>
+      <div class="images-below-text">
+        <img src="Imagenes/01-Barra-Simple.png" alt="Subestación 1">
+      
+      </div>
+    </div>
+    <div class="column">
+      <h3>Configuracion de barras</h3>
+      <p>Las subestaciones de transmisión y distribución utilizan diferentes tipos de arreglos para conectar los
+        circuitos principales. Las conexiones más empleadas son las siguientes:</p>
+        <div class="images-below-text">
+          <img src="Imagenes/01-Barra-Simple.png" alt="Subestación 1">
+          <img src="Imagenes/02-Barra-Simple-con-Barra-de-Transferencia-1024x699.png" alt="Subestación 2">
+          <img src="Imagenes/05-Barra-Doble.png" alt="Subestación 3">
+        </div>
+    </div>
+  </div>
+
+
+  <footer>
+    <p>&copy; 2024 Simulador de Subestación Eléctrica</p>
+  </footer>
+
+  <!-- Importar el script de carrusel -->
+  <script src="JavaScript/carrucelBienvenida.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujar y Mover Flecha</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Si tienes un archivo de estilos, si no, puedes omitir esta línea -->
+</head>
+
+<body>
+
+    <!-- Un solo lienzo más grande -->
+    <canvas id="miCanvas" width="600" height="500" style="border:1px solid #000;"></canvas>
+
+    <!-- Botón de alternancia para Iniciar/Pausar -->
+    <button id="toggleButton" onclick="toggleEstado()">Iniciar</button>
+
+    <!-- Botón para añadir un nuevo dibujo -->
+    <button id="addButton" onclick="addDibujo()">Añadir Dibujo</button>
+
+    <!-- Botón específico para dibujar la flecha -->
+    <button id="drawArrowButton" onclick="drawArrowOnCanvas()">Dibujar Flecha</button>
+
+    <!-- Cargar los scripts JavaScript -->
+    <script src="/PRUEBAS/simular1.js"></script>
+
+
+</body>
+
+</html>

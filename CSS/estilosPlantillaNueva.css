@@ -1,0 +1,289 @@
+/* Estilo general */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-image: url(https://static.vecteezy.com/system/resources/previews/002/848/471/non_2x/modern-white-background-textured-with-abstract-hexagon-pattern-vector.jpg);
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #08121d;
+    color: #F6F3F2;
+    padding: 15px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #b9ad0593;
+    -webkit-text-stroke: 0.5px rgb(255, 255, 255);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+nav ul li a:hover {
+    color: #1e90ff;
+    border: 2px solid #1e90ff;
+    border-radius: 5px;
+}
+
+/* Agregar margen superior al lienzo de elementos */
+.lienzo-elementos {
+    border: 2px solid rgb(92, 3, 3);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fff;
+    text-decoration: none;
+    color: #16093b;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+    /* Espacio entre el menú y el lienzo */
+    margin-right: 5px;
+    /* Separación del lienzo principal */
+    width: 90px;
+    /* Anchura del panel de elementos */
+    display: flex;
+    flex-direction: column;
+    /* Alinear elementos verticalmente */
+    gap: 3px;
+    /* Espaciado entre imágenes */
+}
+
+.imagenes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    /* Espacio entre imágenes */
+}
+
+.imagenes-container img {
+    width: 60px;
+    /* Tamaño reducido de las imágenes */
+    height: 60px;
+    display: block;
+    transition: border 0.3s ease;
+}
+
+.imagenes-container img:hover {
+    color: #4d0206;
+    border: 4px solid #050505b9;
+    border-radius: 8px;
+}
+
+/* Ajustar el contenedor principal para colocar el lienzo a la izquierda */
+main {
+    display: flex;
+    align-items: flex-start;
+    margin: 20px;
+
+    /* Espaciado alrededor del contenido principal */
+}
+
+/* Contenedor del lienzo simular y la lista */
+.main-container {
+    display: flex;
+    flex-grow: 1;
+    /* Ocupa el espacio restante */
+    justify-content: space-between;
+    /* Distribuir el espacio entre los elementos */
+}
+
+.lienzo-simular {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 80px;
+
+}
+
+.cuadro-grande {
+    max-width: 120%;
+    height: auto;
+    border-top: 2px solid #4d0206;
+    border-bottom: 2px solid #4d0206;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.644);
+    border-radius: 20px;
+    background-color: #ffffff;
+}
+
+/* Lista de objetos en el lado derecho */
+.object-list {
+    margin-left: 100px;
+    width: 200px; /* Ampliar para un diseño más espacioso */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinear todo al centro */
+    font-size: 14px; /* Tamaño de fuente más grande para legibilidad */
+    gap: 10px; /* Más espacio entre los elementos */
+    border: 3px solid #0052af;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #1e1e1e; /* Fondo gris oscuro para contraste */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+    color: #ffffff;
+}
+
+.object-list h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px; /* Espacio debajo del título */
+    color: #1e90ff;
+}
+
+/* Estilo para el selector */
+.object-list select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #0052af;
+    background-color: #ffffff;
+    color: #333;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para botones */
+.object-list .buttons,
+.object-list button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #0052af;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.object-list .buttons:hover,
+.object-list button:hover {
+    background-color: #003d8c; /* Cambio de color en hover */
+}
+
+/* Estilo para etiquetas y textos adicionales */
+.object-list label {
+    display: block;
+    font-size: 12px;
+    color: #cccccc; /* Texto gris claro */
+    margin-top: 10px;
+}
+
+/* Input de archivo */
+.object-list input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #cccccc;
+    background-color: #1e1e1e;
+    border: 1px solid #0052af;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.object-list pre {
+    background-color: #2e2e2e;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    width: 100%;
+    font-size: 12px;
+}
+
+
+
+.boton-encendido {
+    background: transparent;
+    border: none;
+    width: 50px; /* Tamaño reducido */
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.3s ease;
+}
+
+.boton-encendido img {
+    width: 100%;
+    height: auto;
+}
+
+.boton-encendido:hover {
+    transform: scale(1.1); /* Efecto de ampliación */
+    opacity: 0.8;
+}
+
+/* Estilo para los botones en la lista de objetos */
+.custom-button {
+    background-color: #08121d;
+    color: #ffffff;
+    border: 2px solid #374E67;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: #374E67;
+    color: #ffffff;
+    border-color: #08121d;
+    transform: scale(1.05); /* Ampliar ligeramente al pasar el mouse */
+}
+
+/* Estilo del selector */
+.custom-select {
+    background-color: #ffffff;
+    color: #08121d;
+    border: 2px solid #374E67;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 0.9em;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.custom-select:hover {
+    border-color: #08121d;
+}
+
+
+/* Footer */
+footer {
+    background-color: #4d0206;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+}

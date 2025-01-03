@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujo con Canvas</title>
+    <style>
+        /* Estilos para el botón */
+        #toggleButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="miCanvas" width="200" height="300"></canvas>
+
+    <button id="toggleButton" onclick="toggleEstado()">Iniciar</button>
+
+    <script>
+        // Obtener el contexto del canvas
+        const canvas = document.getElementById('miCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let lineColor = "black"; // Color inicial de todas las líneas
+        const rayoColor = "orange"; // Color del rayo (no cambia)
+        let estadoIniciado = false; // Estado inicial de "pausado"
+
+        // Función para dibujar la escena completa
+        function dibujarEscena() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar el canvas
+
+            // Dibujar la primera línea vertical
+            ctx.beginPath();
+            ctx.strokeStyle = lineColor;
+            ctx.moveTo(50, 20); // Punto de inicio (x, y)
+            ctx.lineTo(50, 110); // Punto final en el borde superior del cuadrado
+            ctx.stroke();
+
+            // Dibujar puntos en el inicio y final de la primera línea
+            ctx.beginPath();
+            ctx.arc(50, 20, 3, 0, 2 * Math.PI); // Punto en el inicio
+            ctx.fillStyle = lineColor;
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(50, 110, 3, 0, 2 * Math.PI); // Punto en el borde superior del cuadrado
+            ctx.fill();
+
+            // Dibujar el cuadrado con el color del borde actual
+            ctx.beginPath();
+            ctx.strokeStyle = lineColor;
+            ctx.rect(25, 110, 50, 50); // x, y, ancho, alto
+            ctx.stroke();
+
+            // Dibujar la segunda línea vertical debajo del cuadrado
+            ctx.beginPath();
+            ctx.moveTo(50, 160); // Punto de inicio en el borde inferior del cuadrado
+            ctx.lineTo(50, 250); // Punto final
+            ctx.stroke();
+
+            // Dibujar puntos en el inicio y final de la segunda línea
+            ctx.beginPath();
+            ctx.arc(50, 160, 3, 0, 2 * Math.PI); // Punto en el borde inferior del cuadrado
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(50, 250, 3, 0, 2 * Math.PI); // Punto en el final
+            ctx.fill();
+
+            // Dibujar un rayo de voltaje en el medio del cuadrado en estilo angular solo si la animación está activa
+            if (estadoIniciado) {
+                ctx.beginPath();
+                ctx.moveTo(50, 120);      // Inicio del rayo en el borde superior del cuadrado
+                ctx.lineTo(45, 135);      // Ángulo izquierdo hacia abajo
+                ctx.lineTo(50, 133);      // Ángulo derecho hacia abajo (centro)
+                ctx.lineTo(45, 150);      // Ángulo izquierdo hacia abajo
+                ctx.strokeStyle = rayoColor; // Usar color naranja para el rayo
+                ctx.lineWidth = 3;
+                ctx.stroke();
+            }
+        }
+
+        // Función para alternar entre los estados "Iniciar" y "Pausar"
+        function toggleEstado() {
+            estadoIniciado = !estadoIniciado; // Cambiar el estado
+
+            if (estadoIniciado) {
+                lineColor = "green"; // Cambiar el color de todas las líneas a verde
+                document.getElementById("toggleButton").textContent = "Pausar"; // Cambiar texto del botón a "Pausar"
+            } else {
+                lineColor = "black"; // Cambiar el color de todas las líneas a negro
+                document.getElementById("toggleButton").textContent = "Iniciar"; // Cambiar texto del botón a "Iniciar"
+            }
+
+            dibujarEscena(); // Redibujar la escena con el nuevo color y el estado del rayo
+        }
+
+        // Dibujar la escena inicial
+        dibujarEscena();
+    </script>
+</body>
+
+</html>

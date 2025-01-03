@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Line with Movable Pulsing Points</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="300"></canvas>
+    <button id="toggleButton">Iniciar Animación</button>
+
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        const toggleButton = document.getElementById('toggleButton');
+
+        let pointRadius = 2;         // Radio inicial del punto
+        let growing = true;          // Controla si el punto está creciendo o encogiéndose
+        let animationActive = false; // Control de la animación
+        let animationFrameId;        // ID de requestAnimationFrame para poder detenerlo
+
+        // Posiciones de la línea y los puntos
+        let startX = 50;
+        let startY = 150;
+        let endX = 450;
+        let endY = 150;
+
+        // Variables para el arrastre
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        // Función para dibujar la línea y los puntos
+        function draw() {
+            // Limpiar el canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Dibujar la línea horizontal
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(endX, endY);
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Configurar el color de los puntos según el estado de la animación
+            const pointColor = animationActive ? 'green' : 'black';
+
+            // Dibujar el punto izquierdo
+            ctx.beginPath();
+            ctx.arc(startX, startY, pointRadius, 0, Math.PI * 2, true);
+            ctx.fillStyle = pointColor;
+            ctx.fill();
+
+            // Dibujar el punto derecho
+            ctx.beginPath();
+            ctx.arc(endX, endY, pointRadius, 0, Math.PI * 2, true);
+            ctx.fillStyle = pointColor;
+            ctx.fill();
+
+            // Añadir texto en el centro
+            ctx.font = '20px Arial';
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'center';
+            ctx.fillText('BARRAS', (startX + endX) / 2, startY - 10);
+
+            // Actualizar el radio de los puntos para el efecto de pulso solo si la animación está activa
+            if (animationActive) {
+                if (growing) {
+                    pointRadius += 0.05;
+                    if (pointRadius >= 4) { // Tamaño máximo
+                        growing = false;
+                    }
+                } else {
+                    pointRadius -= 0.05;
+                    if (pointRadius <= 2) { // Tamaño mínimo
+                        growing = true;
+                    }
+                }
+
+                // Llamar a la función `draw` nuevamente si la animación está activa
+                animationFrameId = requestAnimationFrame(draw);
+            } else {
+                // Restablecer el tamaño de los puntos cuando la animación se detiene
+                pointRadius = 3; // Tamaño fijo cuando se pausa la animación
+            }
+        }
+
+        // Función para iniciar y pausar la animación
+        function toggleAnimation() {
+            if (animationActive) {
+                // Pausar la animación
+                cancelAnimationFrame(animationFrameId);
+                animationActive = false;
+                toggleButton.textContent = 'Iniciar Animación';
+                draw(); // Llamar a `draw()` una última vez para dibujar con el tamaño fijo
+            } else {
+                // Iniciar la animación
+                animationActive = true;
+                toggleButton.textContent = 'Pausar Animación';
+                draw();
+            }
+        }
+
+        // Event listener para el botón
+        toggleButton.addEventListener('click', toggleAnimation);
+
+        // Funciones de arrastre
+        canvas.addEventListener('mousedown', (e) => {
+            if (!animationActive) {  // Solo permitir el arrastre si la animación está en pausa
+                const rect = canvas.getBoundingClientRect();
+                offsetX = e.clientX - rect.left - startX;
+                offsetY = e.clientY - rect.top - startY;
+                isDragging = true;
+            }
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const rect = canvas.getBoundingClientRect();
+                startX = e.clientX - rect.left - offsetX;
+                startY = e.clientY - rect.top - offsetY;
+                endX = startX + 400; // Mantener la longitud de la línea
+                endY = startY;       // Mantener la línea horizontal
+                draw();
+            }
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+    </script>
+</body>
+
+</html>

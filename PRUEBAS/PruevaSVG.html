@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMULADOR SVG PRUEBAS</title>
+    <link rel="stylesheet" href="/PRUEBAS/estiloSVGPrueba.css">
+
+</head>
+
+<body>
+    <img src="/Imagenes/barra.png" id=" Barra">
+    <button id="tierra"><img src="/Imagenes/puesta a tierra.jpg" alt=" Tierra"></button>
+    <button id="interruptor"><img src="/Imagenes/interruptor de potencia.png" alt=" Interruptor"></button>
+    <button id="cuchilla"><img src="/Imagenes/cuchilla.png" alt=" Barra"></button>
+    <button id="entrada"><img src="/Imagenes/flecha-izquierda.svg" alt=" Barra"></button>
+    <button id="eliminarFiguras">Eliminar</button>
+    <button id="eliminarTodo">Eliminar Todos los elementos</button>
+    <div class="object-list">
+        <h2>Lista de Objetos</h2>
+        <select id="object-dropdown">
+            <option value="" disabled selected>Seleccionar objeto</option>
+            <!-- Opciones dinámicas -->
+        </select>
+    </div>
+    <svg id="miSVG" width="700" height="500" style="border: 1px solid black;"></svg>
+
+    <script src="/PRUEBAS/PruevasSVG.js"></script>
+
+</body>
+
+</html>
